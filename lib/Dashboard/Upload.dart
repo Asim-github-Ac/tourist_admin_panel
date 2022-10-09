@@ -12,6 +12,8 @@ class UploadClass extends StatefulWidget {
 
 class _UploadClassState extends State<UploadClass> {
    Item? selectedUser;
+   late String cityname;
+
    TextEditingController placecontroler=new TextEditingController();
    TextEditingController descontroler=new TextEditingController();
    TextEditingController expensecontroler=new TextEditingController();
@@ -38,6 +40,7 @@ class _UploadClassState extends State<UploadClass> {
       });
     }
   }
+
    sendData() async {
     SnakBar("Wait a Minute");
 // to upload the image to firebase storage
@@ -46,7 +49,7 @@ class _UploadClassState extends State<UploadClass> {
 
 // to get the url of the image from firebase storage
      downurl = await (await task1).ref.getDownloadURL();
-     uploadFirestore(placecontroler.text.toString(), descontroler.text.toString(),expensecontroler.text.toString(), datecontroler.text.toString(), staycontroler.text.toString(), downurl, selectedUser.toString(),context);
+     uploadFirestore(placecontroler.text.toString(), descontroler.text.toString(),expensecontroler.text.toString(), datecontroler.text.toString(), staycontroler.text.toString(), downurl, cityname.toString(),context);
 // you can save the url as a text in you firebase store collection now
    }
 
@@ -149,9 +152,12 @@ class _UploadClassState extends State<UploadClass> {
                     onChanged: (Value){
                         setState(() {
                           selectedUser=Value;
-                        });
+                          cityname=selectedUser!.name;
+                          print('city__________________'+cityname);
+                      });
                     },
                     items: users.map((Item user) {
+
                       return  DropdownMenuItem<Item>(
                         value: user,
                         child: Row(

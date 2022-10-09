@@ -62,7 +62,7 @@ class _SettingClassState extends State<SettingClass> {
                           minimumSize: const Size(200, 45),
                         ),
                         child: const Text("More Details"),
-                        onPressed: (){ Navigator.push(context, MaterialPageRoute(builder: (context)=>DetailsTours()));},
+                        onPressed: (){ Navigator.push(context, MaterialPageRoute(builder: (context)=>DetailsTours(url:data['url'],place: data['placename'],desplace: data['desplace'],expense: data['expense'],date: data['date'],stay: data['stay'],city: data['city'],)));},
                       ),
                       SizedBox(height: 10,)
                     ],
