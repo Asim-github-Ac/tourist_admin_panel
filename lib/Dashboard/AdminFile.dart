@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tourist_admin/utils/universal_variables.dart';
 
 import 'Order.dart';
 import 'Setting.dart';
@@ -28,6 +29,7 @@ class _AdminClassState extends State<AdminClass> {
           ),
 
           bottomNavigationBar: Container(
+          //  color: Colors.orange,
             margin: EdgeInsets.fromLTRB(10, 0, 10, 10),
             height: 65,
             width: 30,
@@ -41,8 +43,7 @@ class _AdminClassState extends State<AdminClass> {
               tabs: [
                 Tab(icon: ImageIcon(AssetImage("assests/order.png")),text: "Order",),
                 Tab(icon: ImageIcon(AssetImage("assests/upload.png")),text: "Upload",),
-                Tab(icon: ImageIcon(AssetImage("assests/gear.png")),text: "Setting",),
-
+                Tab(icon: ImageIcon(AssetImage("assests/setting.png")),text: "Setting",),
               ],
             ),
           ),

@@ -33,7 +33,7 @@ class _UploadClassState extends State<UploadClass> {
     return Scaffold(
       appBar:AppBar(
         centerTitle:true,
-        title: Text("Al-Dahar",style: TextStyle(fontSize: 30,fontWeight: FontWeight.w700),),
+        title: Text("Tourists Admin",style: TextStyle(fontSize: 30,fontWeight: FontWeight.w700),),
         backgroundColor:Color(0xff009688),
       ),
 
