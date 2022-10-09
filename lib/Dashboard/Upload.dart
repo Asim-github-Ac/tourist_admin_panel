@@ -11,11 +11,12 @@ class UploadClass extends StatefulWidget {
 class _UploadClassState extends State<UploadClass> {
    Item? selectedUser;
   List<Item> users =<Item>[
-    const Item("Cloths"),
-    const Item("Food"),
-    const Item("Funds"),
-    const Item("Health"),
-    const Item("Education"),
+    const Item("Islamabad"),
+    const Item("Karachi"),
+    const Item("Kashmir"),
+    const Item("Skardu"),
+    const Item("Quetta"),
+    const Item("Lahore"),
   ];
   File? _image;
   final _picker = ImagePicker();
@@ -43,14 +44,67 @@ class _UploadClassState extends State<UploadClass> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: <Widget> [
-              new Container(
-                alignment: Alignment.center,
-                width: double.infinity,
-                height: 200,
-                color: Colors.white,
-                child: _image != null
-                    ? Image.file(_image!,fit: BoxFit.cover,)
-                    : const Text("Please Select an Image"),
+              GestureDetector(
+                onTap: _openImagePicker,
+                child: new Container(
+                  alignment: Alignment.center,
+                  width: double.infinity,
+                  height: 200,
+                  color: Colors.white,
+                  child: _image != null
+                      ? Image.file(_image!,fit: BoxFit.cover,)
+                      : const Text("Please Select an Image"),
+                ),
+              ),
+              SizedBox(height: 20,),
+              TextFormField(
+               // controller: textPasswordController,
+                decoration: InputDecoration(
+                  hintText: 'Enter Place Name',
+                  prefixIcon: Icon(Icons.place_outlined),
+                  contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
+                ),
+              ),
+              SizedBox(height: 10,),
+              TextFormField(
+               // controller: textPasswordController,
+                decoration: InputDecoration(
+                  hintText: 'Enter Place Des',
+                  prefixIcon: Icon(Icons.description),
+                  contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
+                ),
+              ),
+              SizedBox(height: 10,),
+              TextFormField(
+                // controller: textPasswordController,
+                decoration: InputDecoration(
+                  hintText: 'Expense',
+                  prefixIcon: Icon(Icons.price_change),
+                  contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
+                ),
+              ),
+              SizedBox(height: 10,),
+              TextFormField(
+                // controller: textPasswordController,
+                decoration: InputDecoration(
+                  hintText: 'Enter Date',
+                  prefixIcon: Icon(Icons.date_range),
+                  contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
+                ),
+              ),
+              SizedBox(height: 10,),
+              TextFormField(
+                // controller: textPasswordController,
+                decoration: InputDecoration(
+                  hintText: 'dd/mm/yy',
+                  prefixIcon: Icon(Icons.stay_current_landscape),
+                  contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
+                ),
               ),
               SizedBox(
                 height: 20,
@@ -62,7 +116,7 @@ class _UploadClassState extends State<UploadClass> {
                     elevation: 8,
                     isExpanded: true,
                     style: TextStyle(fontSize: 18),
-                    hint: Text("Select an Item"),
+                    hint: Text("Select city"),
                     value: selectedUser,
                     onChanged: (Value){
                         setState(() {
@@ -89,42 +143,17 @@ class _UploadClassState extends State<UploadClass> {
               new SizedBox(
                 height: 20,
               ),
-              new Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  Expanded(
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          primary:Color(0xff0EA89C),
-                            shape: new RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30),
-                            ),
-                          maximumSize: const Size(200, 45),
-                          minimumSize: const Size(200, 45),
-                        ),
-                        child: const Text("Select"),
-                        onPressed: _openImagePicker,
-                      ),
-
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary:Color(0xff0EA89C),
+                  shape: new RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
                   ),
-                  new SizedBox(
-                    width: 15,
-                  ),
-                  Expanded(
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          primary:Color(0xff0EA89C),
-                          shape: new RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(30),
-                          ),
-                          maximumSize: const Size(200, 45),
-                          minimumSize: const Size(200, 45),
-                        ),
-                        child: const Text("Upload"),
-                        onPressed: (){},
-                      )
-                  ),
-                ],
+                  maximumSize: const Size(200, 45),
+                  minimumSize: const Size(200, 45),
+                ),
+                child: const Text("Upload"),
+                onPressed: (){},
               )
             ],
           ),
