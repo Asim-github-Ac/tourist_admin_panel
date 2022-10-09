@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:tourist_admin/Dashboard/DetailsTours.dart';
 class SettingClass extends StatefulWidget {
   const SettingClass({Key? key}) : super(key: key);
 
@@ -48,6 +49,22 @@ class _SettingClassState extends State<SettingClass> {
                       Row(children: [Text("Place Des: ",style: TextStyle(color: Colors.blue,fontSize: 18),),Text(data['desplace'])],),
                       Row(children: [Text("Place Date: ",style: TextStyle(color: Colors.blue,fontSize: 18),),Text(data['date'])],),
                       Row(children: [Text("Place Stay: ",style: TextStyle(color: Colors.blue,fontSize: 18),),Text(data['stay'])],),
+                      new SizedBox(
+                        height: 20,
+                      ),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary:Color(0xff0EA89C),
+                          shape: new RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                          maximumSize: const Size(200, 45),
+                          minimumSize: const Size(200, 45),
+                        ),
+                        child: const Text("More Details"),
+                        onPressed: (){ Navigator.push(context, MaterialPageRoute(builder: (context)=>DetailsTours()));},
+                      ),
+                      SizedBox(height: 10,)
                     ],
                   ),
                 ),
