@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tourist_admin/utils/universal_variables.dart';
 
 import 'Order.dart';
-import 'Setting.dart';
+import 'Tours.dart';
 import 'Upload.dart';
 
 class AdminClass extends StatefulWidget {
@@ -43,7 +43,7 @@ class _AdminClassState extends State<AdminClass> {
               tabs: [
                 Tab(icon: ImageIcon(AssetImage("assests/order.png")),text: "Order",),
                 Tab(icon: ImageIcon(AssetImage("assests/upload.png")),text: "Upload",),
-                Tab(icon: ImageIcon(AssetImage("assests/setting.png")),text: "Setting",),
+                Tab(icon: ImageIcon(AssetImage("assests/tours.png")),text: "Tours",),
               ],
             ),
           ),

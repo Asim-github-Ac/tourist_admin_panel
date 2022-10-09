@@ -1,4 +1,6 @@
 import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 class UploadClass extends StatefulWidget {
@@ -10,6 +12,12 @@ class UploadClass extends StatefulWidget {
 
 class _UploadClassState extends State<UploadClass> {
    Item? selectedUser;
+   TextEditingController placecontroler=new TextEditingController();
+   TextEditingController descontroler=new TextEditingController();
+   TextEditingController expensecontroler=new TextEditingController();
+   TextEditingController datecontroler=new TextEditingController();
+   TextEditingController staycontroler=new TextEditingController();
+
   List<Item> users =<Item>[
     const Item("Islamabad"),
     const Item("Karachi"),
@@ -19,6 +27,7 @@ class _UploadClassState extends State<UploadClass> {
     const Item("Lahore"),
   ];
   File? _image;
+  late String downurl;
   final _picker = ImagePicker();
   Future<void> _openImagePicker() async {
     final XFile? pickedImage =
@@ -29,6 +38,25 @@ class _UploadClassState extends State<UploadClass> {
       });
     }
   }
+   sendData() async {
+    SnakBar("Wait a Minute");
+// to upload the image to firebase storage
+     var storageimage = FirebaseStorage.instance.ref().child(_image!.path);
+     UploadTask task1 = storageimage.putFile(_image!);
+
+// to get the url of the image from firebase storage
+     downurl = await (await task1).ref.getDownloadURL();
+     uploadFirestore(placecontroler.text.toString(), descontroler.text.toString(),expensecontroler.text.toString(), datecontroler.text.toString(), staycontroler.text.toString(), downurl, selectedUser.toString(),context);
+// you can save the url as a text in you firebase store collection now
+   }
+
+   void SnakBar(String message){
+     ScaffoldMessenger.of(context).showSnackBar(
+         SnackBar(
+           content: Text(message),
+         )
+     );
+   }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,7 +86,7 @@ class _UploadClassState extends State<UploadClass> {
               ),
               SizedBox(height: 20,),
               TextFormField(
-               // controller: textPasswordController,
+                controller: placecontroler,
                 decoration: InputDecoration(
                   hintText: 'Enter Place Name',
                   prefixIcon: Icon(Icons.place_outlined),
@@ -68,7 +96,7 @@ class _UploadClassState extends State<UploadClass> {
               ),
               SizedBox(height: 10,),
               TextFormField(
-               // controller: textPasswordController,
+               controller: descontroler,
                 decoration: InputDecoration(
                   hintText: 'Enter Place Des',
                   prefixIcon: Icon(Icons.description),
@@ -78,7 +106,7 @@ class _UploadClassState extends State<UploadClass> {
               ),
               SizedBox(height: 10,),
               TextFormField(
-                // controller: textPasswordController,
+                 controller: expensecontroler,
                 decoration: InputDecoration(
                   hintText: 'Expense',
                   prefixIcon: Icon(Icons.price_change),
@@ -88,9 +116,9 @@ class _UploadClassState extends State<UploadClass> {
               ),
               SizedBox(height: 10,),
               TextFormField(
-                // controller: textPasswordController,
+                 controller: datecontroler,
                 decoration: InputDecoration(
-                  hintText: 'Enter Date',
+                  hintText: 'dd/mm/yy',
                   prefixIcon: Icon(Icons.date_range),
                   contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
@@ -98,9 +126,9 @@ class _UploadClassState extends State<UploadClass> {
               ),
               SizedBox(height: 10,),
               TextFormField(
-                // controller: textPasswordController,
+                controller: staycontroler,
                 decoration: InputDecoration(
-                  hintText: 'dd/mm/yy',
+                  hintText: 'Stay',
                   prefixIcon: Icon(Icons.stay_current_landscape),
                   contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
                   border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
@@ -153,7 +181,7 @@ class _UploadClassState extends State<UploadClass> {
                   minimumSize: const Size(200, 45),
                 ),
                 child: const Text("Upload"),
-                onPressed: (){},
+                onPressed: (){sendData();},
               )
             ],
           ),
@@ -162,6 +190,28 @@ class _UploadClassState extends State<UploadClass> {
     );
   }
 }
+Future<void> uploadFirestore(String placename,String desplace,String expense,String date,String stay,String url,String city,BuildContext context)async {
+  CollectionReference addtours = FirebaseFirestore.instance.collection('Tours');
+
+   addtours
+      .add({
+    'placename': placename, // John Doe
+    'desplace': desplace, // Stokes and Sons
+    'expense': expense ,
+    'date': date ,
+    'stay': stay ,
+    'url': url ,
+    'city': city // 42
+  })
+      .then((value) => print("User Added"))
+      .catchError((error) => print("Failed to add user: $error"));
+  ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text("Your Tour is Added"),
+      )
+  );
+}
+
 class Item{
   const Item(this.name);
   final String name;
