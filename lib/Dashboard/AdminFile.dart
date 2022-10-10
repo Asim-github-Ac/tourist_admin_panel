@@ -38,7 +38,7 @@ class _AdminClassState extends State<AdminClass> {
               borderRadius: BorderRadius.circular(30),
             ),
             child:TabBar(
-              labelColor: Colors.brown, //<-- selected text color
+              labelColor: Colors.yellowAccent, //<-- selected text color
               unselectedLabelColor: Colors.white,
               tabs: [
                 Tab(icon: ImageIcon(AssetImage("assests/order.png")),text: "Order",),
