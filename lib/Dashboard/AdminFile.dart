@@ -34,11 +34,11 @@ class _AdminClassState extends State<AdminClass> {
             height: 65,
             width: 30,
             decoration: BoxDecoration(
-              color: Color(0xff009688),
+              color: Colors.lightBlue,
               borderRadius: BorderRadius.circular(30),
             ),
             child:TabBar(
-              labelColor: Colors.yellow, //<-- selected text color
+              labelColor: Colors.brown, //<-- selected text color
               unselectedLabelColor: Colors.white,
               tabs: [
                 Tab(icon: ImageIcon(AssetImage("assests/order.png")),text: "Order",),

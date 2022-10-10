@@ -66,7 +66,7 @@ class _UploadClassState extends State<UploadClass> {
       appBar:AppBar(
         centerTitle:true,
         title: Text("Tourists Admin",style: TextStyle(fontSize: 30,fontWeight: FontWeight.w700),),
-        backgroundColor:Color(0xff009688),
+        backgroundColor:Colors.lightBlue,
       ),
 
       body: SingleChildScrollView(
@@ -179,7 +179,7 @@ class _UploadClassState extends State<UploadClass> {
               ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  primary:Color(0xff0EA89C),
+                  primary:Colors.lightBlue,
                   shape: new RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30),
                   ),
